@@ -12,9 +12,14 @@ Aplicativo de gerenciamento de tarefas pessoais para o Checkpoint 2, desenvolvid
 | Gustavo Neri Santos | 560239 |
 | Guilherme Augusto Caseiro | 559765 |
 
-## Etapa atual
+## Funcionalidades implementadas
 
-Esta segunda etapa contém login, sessão persistida, logout, navegação por abas e pilha, Home com frase da API, listagem inicial e Configurações com tema e tratamento persistidos. O formulário de tarefas ainda é uma tela de preparação; o CRUD e os filtros serão implementados na próxima etapa.
+- Login didático com dois perfis, mensagem para credenciais inválidas, sessão persistida e logout.
+- Abas Home, Tarefas e Configurações, com pilha para lista, cadastro, detalhes e edição.
+- CRUD de tarefas por usuário, com validação, confirmação de exclusão e persistência local.
+- Filtros para todas, pendentes e concluídas; listagem com `FlatList` e estado vazio.
+- Tema claro/escuro e preferência de tratamento persistidos.
+- Frase da API pública com carregamento, erro e nova tentativa.
 
 ## Tecnologias
 
@@ -55,14 +60,18 @@ O serviço `src/services/api.ts` consome [DummyJSON Quotes](https://dummyjson.co
 
 Na Home, a frase é carregada com indicador visual. Em caso de erro, há uma mensagem e um botão para tentar novamente.
 
-## Validação da etapa 2
+## Validação
 
 1. Entre com `admin / 123`: a aba Configurações deve abrir primeiro.
 2. Saia e entre com `user / 123`: a aba Home deve abrir primeiro.
 3. Feche e reabra o app: a sessão deve ser restaurada sem mostrar o login.
-4. Abra Tarefas, toque em **Nova tarefa** e volte usando a seta da pilha.
-5. Alterne o tema e escolha Sr., Sra. ou Srta.; feche e reabra o app para verificar a persistência.
-6. Na Home, confira a frase da API e toque em **Outra frase**.
+4. Abra Tarefas e tente cadastrar com título ou descrição inválidos; confira as mensagens junto aos campos.
+5. Cadastre uma tarefa válida, abra seus detalhes, edite os dados e altere o status.
+6. Filtre por pendentes e concluídas. Teste o estado vazio quando não houver resultados.
+7. Exclua uma tarefa: o aplicativo deve pedir confirmação. Cancele uma vez e depois confirme.
+8. Feche e reabra o app para conferir a persistência; depois troque de usuário e confirme que as tarefas ficam separadas.
+9. Alterne o tema e escolha Sr., Sra. ou Srta.; feche e reabra o app para verificar a persistência.
+10. Na Home, confira a frase da API e toque em **Outra frase**.
 
 ## Vídeo
 

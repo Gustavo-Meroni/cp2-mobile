@@ -52,7 +52,7 @@ export function TaskProvider({ children }: { children: React.ReactNode }): React
     if (operationRef.current) throw new Error('Aguarde a operação atual terminar.');
     operationRef.current = true; setSaving(true); setError(null);
     try { await saveStoredTasks(next); tasksRef.current = next; setAllTasks(next); }
-    catch { setError('Não foi possível salvar as tarefas. Tente novamente.'); throw new Error('Não foi possível salvar as tarefas.'); }
+    catch { throw new Error('Não foi possível salvar as tarefas. Tente novamente.'); }
     finally { operationRef.current = false; setSaving(false); }
   }
 
@@ -60,7 +60,9 @@ export function TaskProvider({ children }: { children: React.ReactNode }): React
     if (!user) throw new Error('Faça login para criar tarefas.');
     if (Object.keys(validateTask(input)).length) throw new Error('Revise os campos da tarefa.');
     const now = new Date().toISOString();
-    const task: Task = { id: generateId(), userId: user.id, title: input.title.trim(), description: input.description.trim(), status: input.status, priority: input.priority, category: input.category, categoryIcon: categoryIcons[input.category], createdAt: now, updatedAt: now };
+    let id = generateId();
+    while (tasksRef.current.some(task => task.id === id)) id = generateId();
+    const task: Task = { id, userId: user.id, title: input.title.trim(), description: input.description.trim(), status: input.status, priority: input.priority, category: input.category, categoryIcon: categoryIcons[input.category], createdAt: now, updatedAt: now };
     await commit([...tasksRef.current, task]);
     return task;
   }
@@ -70,7 +72,7 @@ export function TaskProvider({ children }: { children: React.ReactNode }): React
     if (Object.keys(validateTask(input)).length) throw new Error('Revise os campos da tarefa.');
     const current = tasksRef.current.find(task => task.id === id && task.userId === user.id);
     if (!current) throw new Error('Tarefa não encontrada ou sem permissão.');
-    const next = tasksRef.current.map(task => task.id === id ? { ...task, title: input.title.trim(), description: input.description.trim(), status: input.status, priority: input.priority, category: input.category, categoryIcon: categoryIcons[input.category], updatedAt: new Date().toISOString() } : task);
+    const next = tasksRef.current.map(task => task.id === id && task.userId === user.id ? { ...task, title: input.title.trim(), description: input.description.trim(), status: input.status, priority: input.priority, category: input.category, categoryIcon: categoryIcons[input.category], updatedAt: new Date().toISOString() } : task);
     await commit(next);
   }
 
