@@ -1,6 +1,8 @@
 # TaskFlow App
 
-Aplicativo de gerenciamento de tarefas pessoais para o Checkpoint 2, desenvolvido com React Native, Expo e TypeScript.
+Aplicativo de gerenciamento de tarefas pessoais para o Checkpoint 2, desenvolvido com React Native, Expo e TypeScript. Seu objetivo é permitir que cada usuário organize e acompanhe suas próprias atividades em um único lugar.
+
+Repositório público: [Gustavo-Meroni/cp2-mobile](https://github.com/Gustavo-Meroni/cp2-mobile).
 
 ## Integrantes
 
@@ -58,7 +60,14 @@ Essas credenciais são didáticas e ficam no código.
 
 O serviço `src/services/api.ts` consome [DummyJSON Quotes](https://dummyjson.com/docs/quotes), endpoint `/quotes/random`.
 
-Na Home, a frase é carregada com indicador visual. Em caso de erro, há uma mensagem e um botão para tentar novamente.
+Na Home, a frase é carregada com indicador visual. Em caso de erro ou tempo limite, há uma mensagem e um botão para tentar novamente.
+
+## Verificação do código
+
+```bash
+npm run typecheck
+npm run lint
+```
 
 ## Validação
 
@@ -75,4 +84,4 @@ Na Home, a frase é carregada com indicador visual. Em caso de erro, há uma men
 
 ## Vídeo
 
-O link do vídeo demonstrativo será adicionado antes da entrega final (duração exigida: 3 a 7 minutos).
+O vídeo demonstrativo deve ter de 3 a 7 minutos e mostrar navegação, CRUD, persistência e API. Há uma sugestão de sequência em [ROTEIRO_VIDEO.md](./ROTEIRO_VIDEO.md). Adicione aqui o link do vídeo se ele for publicado online.

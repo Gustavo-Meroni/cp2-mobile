@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { CustomButton } from '../../components/CustomButton';
 import { CustomInput } from '../../components/CustomInput';
@@ -26,9 +25,7 @@ export function LoginScreen(): React.JSX.Element {
   return <SafeAreaView style={[styles.screen, { backgroundColor: colors.background }]}>
     <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-        <View style={[styles.mark, { backgroundColor: colors.surfaceAlt }]} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-          <Ionicons name="checkmark-done" size={40} color={colors.primary} />
-        </View>
+        <Image source={require('../../../assets/taskflow-icon.png')} style={styles.mark} accessibilityLabel="Símbolo do TaskFlow" />
         <Text style={[styles.heading, { color: colors.text }]}>Organize seu dia.</Text>
         <Text style={[styles.subheading, { color: colors.muted }]}>Entre no TaskFlow para acompanhar suas tarefas.</Text>
         <View style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border }]}>
