@@ -14,11 +14,11 @@ Aplicativo de gerenciamento de tarefas pessoais para o Checkpoint 2, desenvolvid
 
 ## Etapa atual
 
-Esta primeira etapa contém o projeto Expo, os tipos do domínio, os serviços de armazenamento, a integração tipada com a API de frases e os contextos de autenticação, tarefas e tema. As telas e a navegação serão implementadas nas próximas etapas.
+Esta segunda etapa contém login, sessão persistida, logout, navegação por abas e pilha, Home com frase da API, listagem inicial e Configurações com tema e tratamento persistidos. O formulário de tarefas ainda é uma tela de preparação; o CRUD e os filtros serão implementados na próxima etapa.
 
 ## Tecnologias
 
-React Native, Expo SDK 57, TypeScript, Context API, AsyncStorage e Fetch. As próximas etapas incluirão React Navigation.
+React Native, Expo SDK 57, TypeScript, React Navigation, Context API, AsyncStorage e Fetch.
 
 ## Estrutura principal
 
@@ -27,6 +27,9 @@ React Native, Expo SDK 57, TypeScript, Context API, AsyncStorage e Fetch. As pr�
 - `src/hooks`: acesso tipado aos contextos.
 - `src/services`: persistência local e consumo de API.
 - `src/utils`: opções, validação, datas e IDs.
+- `src/routes`: fluxo de autenticação, abas e pilha de tarefas.
+- `src/screens`: login, Home, Tarefas e Configurações.
+- `src/components`: botões, campos, cabeçalho e cartões reutilizáveis.
 
 ## Instalação e execução
 
@@ -48,7 +51,18 @@ Essas credenciais são didáticas e ficam no código.
 
 ## API
 
-O serviço `src/services/api.ts` consome [DummyJSON Quotes](https://dummyjson.com/docs/quotes), endpoint `/quotes/random`. A exibição na Home será incluída na etapa das telas.
+O serviço `src/services/api.ts` consome [DummyJSON Quotes](https://dummyjson.com/docs/quotes), endpoint `/quotes/random`.
+
+Na Home, a frase é carregada com indicador visual. Em caso de erro, há uma mensagem e um botão para tentar novamente.
+
+## Validação da etapa 2
+
+1. Entre com `admin / 123`: a aba Configurações deve abrir primeiro.
+2. Saia e entre com `user / 123`: a aba Home deve abrir primeiro.
+3. Feche e reabra o app: a sessão deve ser restaurada sem mostrar o login.
+4. Abra Tarefas, toque em **Nova tarefa** e volte usando a seta da pilha.
+5. Alterne o tema e escolha Sr., Sra. ou Srta.; feche e reabra o app para verificar a persistência.
+6. Na Home, confira a frase da API e toque em **Outra frase**.
 
 ## Vídeo
 
