@@ -82,6 +82,4 @@ npm run lint
 9. Alterne o tema e escolha Sr., Sra. ou Srta.; feche e reabra o app para verificar a persistência.
 10. Na Home, confira a frase da API e toque em **Outra frase**.
 
-## Vídeo
 
-O vídeo demonstrativo deve ter de 3 a 7 minutos e mostrar navegação, CRUD, persistência e API. Há uma sugestão de sequência em [ROTEIRO_VIDEO.md](./ROTEIRO_VIDEO.md). Adicione aqui o link do vídeo se ele for publicado online.
